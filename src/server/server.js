@@ -55,10 +55,16 @@ app.delete('/todos/:id', (req, res) => {
 
   todos.map((todo, i) => {
     if (todo.id === id) {
-      todos.splice(i, 1);
-      return res.status(200).send({
-        message: `Todo with id ${id} successfully deleted.`
-      })
+      let deletedTodo = todos.splice(i, 1);
+      if(deletedTodo) {
+        return res.status(200).send({
+          message: `Todo with id ${id} successfully deleted.`
+        })
+      } else {
+        return res.status(400).send({
+          message: `Todo with id ${id} not found.`
+        })
+      }
     }
   })
 });
@@ -81,11 +87,10 @@ app.put('/todos/:id', (req, res) => {
     return res.status(200).json(allTodos)
   } else {
     return res.status(400).send({
-      message: 'error'
+      message: 'Cannot update.'
     })
   }
 });
-
 
 // Node server.
 const port = 3000;
