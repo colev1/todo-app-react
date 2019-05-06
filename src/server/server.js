@@ -52,14 +52,20 @@ app.post('/todos', (req, res) => {
 
 app.delete('/todos/:id', (req, res) => {
   const id = parseInt(req.params.id);
-  const updatedTodos = todos.filter((todo) => {
-    return todo.id !== id;
+
+  todos.map((todo, i) => {
+    if (todo.id === id) {
+      todos.splice(i, 1);
+      return res.status(200).send({
+        message: `Todo with id ${id} successfully deleted.`
+      })
+    }
   })
-  res.json(JSON.stringify(updatedTodos))
 });
 
 app.put('/todos/:id', (req, res) => {
-  res.status(500).send({ message: 'not implemented' });
+  const id = parseInt(req.params.id);
+  
 });
 
 // Node server.
