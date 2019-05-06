@@ -34,7 +34,7 @@ app.get('/todos/:id', (req, res) => {
 });
 
 app.post('/todos', (req, res) => {
-  const text = req.body.data.text;
+  const { text } = req.body.data;
 
   if (!text) {
     res.status(400).json({ message: 'text is required' });
@@ -65,8 +65,27 @@ app.delete('/todos/:id', (req, res) => {
 
 app.put('/todos/:id', (req, res) => {
   const id = parseInt(req.params.id);
-  
+  const { text } = req.body.data;
+  const allTodos = todos.map(todo => {
+    if (todo.id === id) {
+      return {
+        id,
+        text,
+        status: todo.status
+      }
+    } else {
+      return todo
+    }
+  })
+  if (allTodos) {
+    return res.status(200).json(allTodos)
+  } else {
+    return res.status(400).send({
+      message: 'error'
+    })
+  }
 });
+
 
 // Node server.
 const port = 3000;
