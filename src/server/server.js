@@ -26,15 +26,15 @@ app.get('/todos', (req, res) => {
 });
 
 app.get('/todos/:id', (req, res) => {
-  const id = req.params.id;
+  const id = parseInt(req.params.id);
   const index = todos.findIndex((todo) => {
     return todo.id === id;
   });
-
   res.json(JSON.stringify(todos[index]));
 });
 
 app.post('/todos', (req, res) => {
+  console.log(req.body.data.text)
   const text = req.body.data.text;
 
   if (!text) {
