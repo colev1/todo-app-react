@@ -26,16 +26,15 @@ app.get('/todos', (req, res) => {
 });
 
 app.get('/todos/:id', (req, res) => {
-  const id = req.params.id;
+  const id = parseInt(req.params.id);
   const index = todos.findIndex((todo) => {
     return todo.id === id;
   });
-
   res.json(JSON.stringify(todos[index]));
 });
 
 app.post('/todos', (req, res) => {
-  const text = req.body.data.text;
+  const { text } = req.body.data;
 
   if (!text) {
     res.status(400).json({ message: 'text is required' });
@@ -52,11 +51,45 @@ app.post('/todos', (req, res) => {
 });
 
 app.delete('/todos/:id', (req, res) => {
-  res.status(500).send({ message: 'not implemented' });
+  const id = parseInt(req.params.id);
+
+  todos.map((todo, i) => {
+    if (todo.id === id) {
+      let deletedTodo = todos.splice(i, 1);
+      if(deletedTodo) {
+        return res.status(200).send({
+          message: `Todo with id ${id} successfully deleted.`
+        })
+      } else {
+        return res.status(400).send({
+          message: `Todo with id ${id} not found.`
+        })
+      }
+    }
+  })
 });
 
 app.put('/todos/:id', (req, res) => {
-  res.status(500).send({ message: 'not implemented' });
+  const id = parseInt(req.params.id);
+  const { text } = req.body.data;
+  const allTodos = todos.map(todo => {
+    if (todo.id === id) {
+      return {
+        id,
+        text,
+        status: todo.status
+      }
+    } else {
+      return todo
+    }
+  })
+  if (allTodos) {
+    return res.status(200).json(allTodos)
+  } else {
+    return res.status(400).send({
+      message: 'Cannot update.'
+    })
+  }
 });
 
 // Node server.
