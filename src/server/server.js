@@ -34,7 +34,6 @@ app.get('/todos/:id', (req, res) => {
 });
 
 app.post('/todos', (req, res) => {
-  console.log(req.body.data.text)
   const text = req.body.data.text;
 
   if (!text) {
@@ -52,7 +51,11 @@ app.post('/todos', (req, res) => {
 });
 
 app.delete('/todos/:id', (req, res) => {
-  res.status(500).send({ message: 'not implemented' });
+  const id = parseInt(req.params.id);
+  const updatedTodos = todos.filter((todo) => {
+    return todo.id !== id;
+  })
+  res.json(JSON.stringify(updatedTodos))
 });
 
 app.put('/todos/:id', (req, res) => {
