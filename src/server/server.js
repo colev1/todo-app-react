@@ -10,7 +10,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const todos = [
+let todos = [
   { id: 1, text: 'Hello, world!' },
   { id: 2, text: 'Pick up groceries', status: 'complete' }
 ];
@@ -72,25 +72,27 @@ app.delete('/todos/:id', (req, res) => {
 
 app.put('/todos/:id', (req, res) => {
   const id = parseInt(req.params.id);
-  const { text } = req.body.data;
-  const allTodos = todos.map(todo => {
+  let updatedTodo;
+  todos = todos.map(todo => {
     if (todo.id === id) {
-      return {
-        id,
-        text,
-        status: todo.status
-      }
+      updatedTodo = req.body.data;
+      return updatedTodo;
     } else {
       return todo
     }
   })
-  if (allTodos) {
-    return res.status(200).json(allTodos)
-  } else {
-    return res.status(400).send({
-      message: 'Cannot update.'
-    })
-  }
+  
+  return res.status(200).json(updatedTodo)
+
+
+
+  // if (allTodos) {
+  //   return res.status(200).json(allTodos)
+  // } else {
+  //   return res.status(400).send({
+  //     message: 'Cannot update.'
+  //   })
+  // }
 });
 
 // Node server.
