@@ -2,6 +2,8 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import Button from './button';
+
 const noop = () => {};
 
 /**
@@ -38,6 +40,9 @@ const Navbar = ({ filterBy, onClickFilter }) => {
   let completedLinkCls = `${baseCls}__item`;
   completedLinkCls += filterBy === 'completed' ? ` ${baseCls}__item--active` : '';
 
+  let archivedLinkCls = `${baseCls}__item`;
+  completedLinkCls += filterBy === 'archived' ? ` ${baseCls}__item--active` : '';
+
   return (
     <div className={baseCls}>
       <NavLink
@@ -60,6 +65,13 @@ const Navbar = ({ filterBy, onClickFilter }) => {
       >
         Completed
       </span>
+      <span
+        className={archivedLinkCls}
+        onClick={() => onClickFilter('archived')}
+      >
+        Archived
+      </span>
+      <Button text="Archive all completed"/>
     </div>
   );
 }

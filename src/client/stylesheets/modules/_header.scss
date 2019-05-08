@@ -1,4 +1,10 @@
 // Header module
 .header {
   background-color: map-get($colors, primary);
+  padding: 20px;
+  a {
+    color: white;
+    text-decoration: none;
+    font-size: 40px;
+  }
 }

@@ -4,7 +4,7 @@ import React from 'react';
 import { api } from '../helpers/api';
 import Todo from './todo';
 
-const noop = () => {};
+const noop = () => { };
 
 /**
  * Prop Types
@@ -30,7 +30,7 @@ const defaultProps = {
  * Todos component
  * @returns {ReactElement}
  */
-const Todos = ({ filterBy, todos, updateTodos }) => {
+const Todos = ({ filterBy, todos, updateTodos, countCompletedTodos }) => {
   /**
    * Base CSS class
    */
@@ -116,6 +116,9 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
         case 'completed':
           filtered = todo.status !== 'complete';
           break;
+        // case 'archived':
+        //   filtered = todo.status === 'archived';
+        //   break;
         default:
           filtered = false;
       }

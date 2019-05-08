@@ -8,6 +8,7 @@ import Navbar from './navbar';
 import TodoForm from './todo-form';
 import TodoLink from './todo-link';
 import Todos from './todos';
+import SummaryBar from './summarybar';
 
 /**
  * TodosPage component
@@ -40,12 +41,15 @@ class TodosPage extends React.Component {
     this.state = {
       todos: [],
       filterBy: null,
+      remaining: 0
     };
 
     this.addTodo = this.addTodo.bind(this);
     this.postTodo = this.postTodo.bind(this);
     this.setFilterBy = this.setFilterBy.bind(this);
     this.updateTodos = this.updateTodos.bind(this);
+    this.completeAll = this.completeAll.bind(this);
+    this.countCompletedTodos = this.countCompletedTodos.bind(this)
   }
 
   /**
@@ -53,6 +57,7 @@ class TodosPage extends React.Component {
    */
   componentDidMount() {
     api('GET', null, this.updateTodos);
+    this.countCompletedTodos()
   }
 
   /**
@@ -64,7 +69,6 @@ class TodosPage extends React.Component {
     if (!text) {
       return;
     }
-
     api('POST', { text }, this.postTodo);
   }
 
@@ -77,6 +81,7 @@ class TodosPage extends React.Component {
     this.setState({
       todos: [...json],
     });
+    this.countCompletedTodos()
   }
 
   /**
@@ -95,6 +100,25 @@ class TodosPage extends React.Component {
    */
   updateTodos(todos) {
     this.setState({ todos });
+    this.countCompletedTodos()
+  }
+
+  completeAll(todos) {
+    todos.forEach((todo => {
+      todo.status = "complete";
+    }))
+    this.setState({ todos })
+    this.countCompletedTodos();
+  }
+
+  countCompletedTodos() {
+    let remaining = 0;
+    for (var i = 0; i < this.state.todos.length; i++) {
+      if (this.state.todos[i].status !== "complete") {
+        remaining++
+      }
+    }
+    this.setState({ remaining })
   }
 
   /**
@@ -102,9 +126,16 @@ class TodosPage extends React.Component {
    * @returns {ReactElement}
    */
   render() {
+
     return (
       <div className={this.baseCls}>
         <Navbar filterBy={this.state.filterBy} onClickFilter={this.setFilterBy} />
+
+        <SummaryBar
+          completeAll={this.completeAll}
+          todos={this.state.todos}
+          remaining={this.state.remaining}
+        />
 
         <TodoForm onSubmit={this.addTodo} />
 
@@ -112,6 +143,7 @@ class TodosPage extends React.Component {
           filterBy={this.state.filterBy}
           todos={this.state.todos}
           updateTodos={this.updateTodos}
+          countCompletedTodos={this.countCompletedTodos}
         />
       </div>
     );
