@@ -4,7 +4,7 @@ import React from 'react';
 import { api } from '../helpers/api';
 import Todo from './todo';
 
-const noop = () => {};
+const noop = () => { };
 
 /**
  * Prop Types
@@ -45,7 +45,7 @@ const Todos = ({ filterBy, todos, updateTodos, countCompletedTodos }) => {
     const index = todos.findIndex(todo => {
       return todo.id === json.id;
     });
-    
+
     updateTodos(
       [
         ...todos.slice(0, index),

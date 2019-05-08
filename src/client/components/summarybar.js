@@ -3,7 +3,7 @@ import React from 'react';
 
 import Button from './button';
 
-const noop = () => {};
+const noop = () => { };
 
 const propTypes = {
   completeAll: PropTypes.func,
@@ -16,11 +16,11 @@ const defaultProps = {
 }
 
 
-const SummaryBar = ({completeAll, todos, remaining}) => {
+const SummaryBar = ({ completeAll, todos, remaining }) => {
   return (
     <div className="summary-bar">
       <p> {remaining} tasks remaining</p>
-      <Button text="Complete All" onClick={completeAll.bind(this, todos)}/>
+      <Button text="Complete All" onClick={completeAll.bind(this, todos)} />
     </div>
   )
 }

@@ -52,15 +52,22 @@ app.post('/todos', (req, res) => {
 
 app.delete('/todos/:id', (req, res) => {
   const id = parseInt(req.params.id);
-  let deletedTodo = todos.find((todo) => todo.id === id )
+  let index;
+  let deletedTodo = todos.find((todo, i) => {
+    if (todo.id === id) {
+      index = i;
+      return todo;
+    }
+  })
 
-      if(deletedTodo) {
-        return res.status(200).json(deletedTodo)
-      } else {
-        return res.status(400).send({
-          message: `Todo with id ${id} not found.`
-        })
-      }
+  todos.splice(index, 1);
+  if (deletedTodo) {
+    return res.status(200).json(deletedTodo)
+  } else {
+    return res.status(400).send({
+      message: `Todo with id ${id} not found.`
+    })
+  }
 });
 
 app.put('/todos/:id', (req, res) => {
@@ -96,4 +103,4 @@ const server = app.listen(port, () => {
 const devServer = require('../../tools/development-server');
 const devPort = 8080;
 
-devServer.listen(devPort, '0.0.0.0', () => {});
+devServer.listen(devPort, '0.0.0.0', () => { });
