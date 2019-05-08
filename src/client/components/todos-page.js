@@ -50,6 +50,7 @@ class TodosPage extends React.Component {
     this.updateTodos = this.updateTodos.bind(this);
     this.completeAll = this.completeAll.bind(this);
     this.countCompletedTodos = this.countCompletedTodos.bind(this)
+    this.putTodo = this.putTodo.bind(this)
   }
 
   /**
@@ -106,9 +107,30 @@ class TodosPage extends React.Component {
   completeAll(todos) {
     todos.forEach((todo => {
       todo.status = "complete";
+      const newTodo = Object.assign({}, todo);
+      newTodo.status = 'complete';
+      newTodo.archive = false;
+      api('PUT', newTodo, this.putTodo);
     }))
     this.setState({ todos })
+    
     this.countCompletedTodos();
+
+  }
+
+  putTodo = json => {
+    const {todos} = this.state;
+    const index = todos.findIndex(todo => {
+      return todo.id === json.id;
+    });
+
+    this.updateTodos(
+      [
+        ...todos.slice(0, index),
+        json,
+        ...todos.slice(index + 1),
+      ]
+    );
   }
 
   countCompletedTodos() {

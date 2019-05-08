@@ -1,6 +1,10 @@
 // Navbar module
 .navbar {
   background-color: $lightgray;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   padding: 20px;
   &__item {
     margin: 10px;
@@ -12,5 +16,14 @@
     margin: 10px;
     font-weight: 700;
     color: $darkgray;
+  }
+
+  .button {
+    background-color: $green;
+    border-radius: 4px;
+    color: white;
+    font-weight: 700;
+    right: 0;
+    padding: 8px;
   }
 }
