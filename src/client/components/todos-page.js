@@ -41,6 +41,7 @@ class TodosPage extends React.Component {
     this.state = {
       todos: [],
       filterBy: null,
+      completed: 0
     };
 
     this.addTodo = this.addTodo.bind(this);
@@ -48,6 +49,7 @@ class TodosPage extends React.Component {
     this.setFilterBy = this.setFilterBy.bind(this);
     this.updateTodos = this.updateTodos.bind(this);
     this.completeAll = this.completeAll.bind(this);
+    this.countCompletedTodos = this.countCompletedTodos.bind(this)
   }
 
   /**
@@ -55,6 +57,7 @@ class TodosPage extends React.Component {
    */
   componentDidMount() {
     api('GET', null, this.updateTodos);
+    this.countCompletedTodos()
   }
 
   /**
@@ -66,7 +69,6 @@ class TodosPage extends React.Component {
     if (!text) {
       return;
     }
-
     api('POST', { text }, this.postTodo);
   }
 
@@ -100,16 +102,21 @@ class TodosPage extends React.Component {
   }
 
   completeAll(todos) {
-    console.log(todos)
     todos.forEach((todo => {
       todo.status = "complete";
     }))
-
-    // todos.map((todo) => {
-    //   console.log(todo)
-    // })
-
     this.setState({todos})
+    this.countCompletedTodos();
+  }
+
+  countCompletedTodos() {
+    let completed = 0;
+    for(var i=0; i<this.state.todos.length; i++) {
+      if(this.state.todos[i].status==="complete") {
+        completed++
+      }
+    }
+    this.setState({completed})
   }
 
   /**
@@ -124,6 +131,7 @@ class TodosPage extends React.Component {
         <SummaryBar 
           completeAll={this.completeAll} 
           todos={this.state.todos}
+          countCompletedTodos={this.countCompletedTodos}
         />
 
         <TodoForm onSubmit={this.addTodo} />
