@@ -45,6 +45,7 @@ const Navbar = ({ filterBy, onClickFilter }) => {
 
   return (
     <div className={baseCls}>
+      <div>
       <NavLink
         to="/"
         activeClassName={`${baseCls}__item--active`}
@@ -71,6 +72,7 @@ const Navbar = ({ filterBy, onClickFilter }) => {
       >
         Archived
       </span>
+      </div>
       <Button text="Archive all completed"/>
     </div>
   );
