@@ -17,9 +17,21 @@ const defaultProps = {
 
 
 const SummaryBar = ({ completeAll, todos, remaining }) => {
+  let message;
+  switch(remaining) {
+    case 0:
+      message = 'You dont have any tasks remaining'
+      break;
+    case 1:
+      message = '1 task remaining'
+      break;
+    default:
+      message = `${remaining} tasks remaining`
+  }
+
   return (
     <div className="summary-bar">
-      <p> {remaining} tasks remaining</p>
+      <p> {message} </p>
       <Button text="Complete All" onClick={completeAll.bind(this, todos)} />
     </div>
   )
