@@ -7,27 +7,19 @@ const noop = () => {};
 
 const propTypes = {
   completeAll: PropTypes.func,
-  countCompletedTodos: PropTypes.func,
   todos: PropTypes.array
 };
 
 const defaultProps = {
-  countCompletedTodos: noop,
   todos: [],
   completeAll: noop
 }
 
 
-const SummaryBar = ({completeAll, todos, countCompletedTodos}) => {
-  // console.log(todos)
-  // console.log([3,4,2].map(todo =>  todo))
-  if(todos) {
-    countCompletedTodos.bind(this, todos)
-  }
-
+const SummaryBar = ({completeAll, todos, remaining}) => {
   return (
     <div className="summary-bar">
-      <p> tasks remaining</p>
+      <p> {remaining} tasks remaining</p>
       <Button text="Complete All" onClick={completeAll.bind(this, todos)}/>
     </div>
   )

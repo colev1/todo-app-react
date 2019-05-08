@@ -41,7 +41,7 @@ class TodosPage extends React.Component {
     this.state = {
       todos: [],
       filterBy: null,
-      completed: 0
+      remaining: 0
     };
 
     this.addTodo = this.addTodo.bind(this);
@@ -81,6 +81,7 @@ class TodosPage extends React.Component {
     this.setState({
       todos: [...json],
     });
+    this.countCompletedTodos()
   }
 
   /**
@@ -99,6 +100,7 @@ class TodosPage extends React.Component {
    */
   updateTodos(todos) {
     this.setState({ todos });
+    this.countCompletedTodos()
   }
 
   completeAll(todos) {
@@ -110,13 +112,13 @@ class TodosPage extends React.Component {
   }
 
   countCompletedTodos() {
-    let completed = 0;
+    let remaining = 0;
     for(var i=0; i<this.state.todos.length; i++) {
-      if(this.state.todos[i].status==="complete") {
-        completed++
+      if(this.state.todos[i].status!=="complete") {
+        remaining++
       }
     }
-    this.setState({completed})
+    this.setState({remaining})
   }
 
   /**
@@ -124,6 +126,7 @@ class TodosPage extends React.Component {
    * @returns {ReactElement}
    */
   render() {
+
     return (
       <div className={this.baseCls}>
         <Navbar filterBy={this.state.filterBy} onClickFilter={this.setFilterBy} />
@@ -131,7 +134,7 @@ class TodosPage extends React.Component {
         <SummaryBar 
           completeAll={this.completeAll} 
           todos={this.state.todos}
-          countCompletedTodos={this.countCompletedTodos}
+          remaining={this.state.remaining}
         />
 
         <TodoForm onSubmit={this.addTodo} />
@@ -140,6 +143,7 @@ class TodosPage extends React.Component {
           filterBy={this.state.filterBy}
           todos={this.state.todos}
           updateTodos={this.updateTodos}
+          countCompletedTodos={this.countCompletedTodos}
         />
       </div>
     );
