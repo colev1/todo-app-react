@@ -52,21 +52,15 @@ app.post('/todos', (req, res) => {
 
 app.delete('/todos/:id', (req, res) => {
   const id = parseInt(req.params.id);
+  let deletedTodo = todos.find((todo) => todo.id === id )
 
-  todos.map((todo, i) => {
-    if (todo.id === id) {
-      let deletedTodo = todos.splice(i, 1);
       if(deletedTodo) {
-        return res.status(200).send({
-          message: `Todo with id ${id} successfully deleted.`
-        })
+        return res.status(200).json(deletedTodo)
       } else {
         return res.status(400).send({
           message: `Todo with id ${id} not found.`
         })
       }
-    }
-  })
 });
 
 app.put('/todos/:id', (req, res) => {

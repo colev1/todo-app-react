@@ -45,7 +45,7 @@ const Todos = ({ filterBy, todos, updateTodos, countCompletedTodos }) => {
     const index = todos.findIndex(todo => {
       return todo.id === json.id;
     });
-
+    
     updateTodos(
       [
         ...todos.slice(0, index),
