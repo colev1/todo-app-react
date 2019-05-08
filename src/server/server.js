@@ -81,18 +81,11 @@ app.put('/todos/:id', (req, res) => {
       return todo
     }
   })
-  
-  return res.status(200).json(updatedTodo)
-
-
-
-  // if (allTodos) {
-  //   return res.status(200).json(allTodos)
-  // } else {
-  //   return res.status(400).send({
-  //     message: 'Cannot update.'
-  //   })
-  // }
+  if(updatedTodo) {
+    return res.status(200).json(updatedTodo)
+  } else {
+    
+  }
 });
 
 // Node server.
