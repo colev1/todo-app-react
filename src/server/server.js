@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/todos', (req, res) => {
-  res.json(JSON.stringify(todos));
+  res.json(todos);
 });
 
 app.get('/todos/:id', (req, res) => {
@@ -30,7 +30,7 @@ app.get('/todos/:id', (req, res) => {
   const index = todos.findIndex((todo) => {
     return todo.id === id;
   });
-  res.json(JSON.stringify(todos[index]));
+  res.json(todos[index]);
 });
 
 app.post('/todos', (req, res) => {
