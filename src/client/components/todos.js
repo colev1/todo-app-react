@@ -97,6 +97,13 @@ const Todos = ({ filterBy, todos, updateTodos, countCompletedTodos }) => {
     api('PUT', newTodo, putTodo);
   }
 
+  const onClickArchive = todo => {
+    const newTodo = Object.assign({}, todo);
+    newTodo.archive = true;
+
+    api('PUT', newTodo, putTodo);
+  }
+
   /**
    * Renders All Todos
    *
@@ -129,6 +136,7 @@ const Todos = ({ filterBy, todos, updateTodos, countCompletedTodos }) => {
           filtered={filtered}
           onClickDelete={onClickDelete.bind(this, todo)}
           onClickTodo={onClickTodo.bind(this, todo)}
+          onClickArchive={onClickArchive.bind(this, todo)}
           status={todo.status}
           text={todo.text}
         />
