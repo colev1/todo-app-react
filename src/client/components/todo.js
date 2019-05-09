@@ -44,13 +44,23 @@ const Todo = ({ filtered, onClickDelete, onClickTodo, status, text }) => {
     + (status === 'complete' ? ' todo--status-complete' : '')
     + (filtered ? ' todo--filtered' : '');
 
-  return (
-    <li className={todoCls}>
-      <TodoLink text={text} onClick={onClickTodo} />
+  if(status === 'complete') {
+    return (
+      <li className={todoCls}>
+        <TodoLink text={text} onClick={onClickTodo} />
+        <Button text='Archive' />
 
-      <Button text="Delete" onClick={onClickDelete} />
-    </li>
-  );
+        <Button text="Delete" onClick={onClickDelete} />
+      </li>
+    );
+  } else {
+    return (
+      <li className={todoCls}>
+        <TodoLink text={text} onClick={onClickTodo} />
+        <Button text="Delete" onClick={onClickDelete} />
+      </li>
+    );
+  }
 }
 
 Todo.propTypes = propTypes;

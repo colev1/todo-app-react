@@ -29,7 +29,7 @@ const Button = ({ text, onClick }) => {
   /**
    * Base CSS class
    */
-  const baseCls = 'button';
+  const baseCls = text === 'Archive'? 'archive-btn' : 'button' ;
 
   return (
     <button className={baseCls} onClick={onClick}>
