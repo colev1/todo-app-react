@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import TodosPage from './todos-page';
 import Header from './header';
@@ -30,10 +30,12 @@ const App = ({ children }) => {
     <BrowserRouter>
       <div className={baseCls}>
         <Header />
-
-        <Route path="/">
-          <TodosPage />
-        </Route>
+        <Switch>
+          <Route exact path="/" component={TodosPage}/>
+          <Route path="/active" component={TodosPage} />
+          <Route path="/complete" component={TodosPage} />
+          <Route path="/archive" component={TodosPage} />
+        </Switch>
       </div>
     </BrowserRouter>
   );

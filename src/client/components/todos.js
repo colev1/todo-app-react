@@ -64,6 +64,8 @@ const Todos = ({ filterBy, todos, updateTodos, countCompletedTodos }) => {
       return todo.id === json.id;
     });
 
+    console.log(json)
+
     updateTodos(
       [
         ...todos.slice(0, index),
@@ -71,6 +73,7 @@ const Todos = ({ filterBy, todos, updateTodos, countCompletedTodos }) => {
         ...todos.slice(index + 1),
       ]
     );
+
   }
 
   /**
@@ -100,6 +103,7 @@ const Todos = ({ filterBy, todos, updateTodos, countCompletedTodos }) => {
   const onClickArchive = todo => {
     const newTodo = Object.assign({}, todo);
     newTodo.archive = true;
+    console.log(newTodo)
 
     api('PUT', newTodo, putTodo);
   }
@@ -117,17 +121,17 @@ const Todos = ({ filterBy, todos, updateTodos, countCompletedTodos }) => {
     return todos.map(todo => {
       let filtered;
       switch (filterBy) {
-        case 'active':
-          filtered = todo.status === 'complete';
+        case '/active':
+          filtered = todo.status === 'active';
           break;
-        case 'completed':
+        case '/complete':
           filtered = todo.status !== 'complete';
           break;
-        // case 'archived':
-        //   filtered = todo.status === 'archived';
-        //   break;
+        case '/archived':
+          filtered = todo.archive;
+          break;
         default:
-          filtered = false;
+          filtered = true;
       }
 
       return (

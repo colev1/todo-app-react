@@ -40,11 +40,8 @@ const Todo = ({ filtered, onClickDelete, onClickTodo, onClickArchive, status, te
   /**
    * Base CSS class
    */
-  const baseCls = 'todo';
-
-  const todoCls = baseCls
-    + (status === 'complete' ? ' todo--status-complete' : '')
-    + (filtered ? ' todo--filtered' : '');
+  const todoCls = filtered ? 'todo' : 'todo hidden';
+  + (status === 'complete' ? ' todo--status-complete' : '')
 
   if(status === 'complete') {
     return (
