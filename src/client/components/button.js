@@ -34,6 +34,7 @@ const Button = ({ text, onClick, archive, status, remaining }) => {
    * Base CSS class
    */
   let buttonClass;
+  //Switches class of the button based on status and archive of current todo.
   switch (text) {
     case 'Archive':
       if (archive || status === 'active') {

@@ -95,6 +95,8 @@ class TodosPage extends React.Component {
     this.countCompletedTodos()
   }
 
+
+  //Updates the status of each todo in todos array to complete
   completeAll(todos) {
     todos.forEach((todo => {
       todo.status = "complete";
@@ -109,6 +111,7 @@ class TodosPage extends React.Component {
 
   }
 
+  //Updates the status of a todo currently in todos array
   putTodo = json => {
     const { todos } = this.state;
     const index = todos.findIndex(todo => {
@@ -124,6 +127,7 @@ class TodosPage extends React.Component {
     );
   }
 
+  //Recounts completed todos and displays number on page
   countCompletedTodos() {
     let remaining = 0;
     for (var i = 0; i < this.state.todos.length; i++) {
@@ -134,6 +138,7 @@ class TodosPage extends React.Component {
     this.setState({ remaining })
   }
 
+  //Changes archive status of all completed todos to true
   archiveAllCompleted(todos) {
     todos.forEach(todo => {
       if (todo.status === "complete") {
