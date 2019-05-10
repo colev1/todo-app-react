@@ -1,19 +1,21 @@
 // Lists module.
 ul,
 .list {
-  list-style: none;
-  padding: 0;
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   justify-content: space-evenly;
+  list-style: none;
   margin: 20px;
+  padding: 0;
 }
 
 li {
   border-bottom: solid 1px black;
-  display: flex;
   justify-content: space-between;
-  width: 90%;
   padding: 20px;
+  width: 90%;
+  display: flex;
+  // justify-content: space-around;
+  align-items: center;
 }

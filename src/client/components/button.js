@@ -33,15 +33,21 @@ const Button = ({ text, onClick, archive, status }) => {
   /**
    * Base CSS class
    */
-
-  let buttonClass = 'button';
-  if (text === 'Archive') {
+  let buttonClass;
+  switch(text) {
+   case 'Archive': 
     if (archive || status === "active") {
-      buttonClass = 'display-none';
+      buttonClass = 'hidden';
     } else {
       buttonClass = 'archive-btn';
     }
-  }
+    break;
+  case 'X':
+    buttonClass = 'x-btn'
+  break;
+  default:
+    buttonClass = 'button';
+}
 
   return (
     <button className={buttonClass} onClick={onClick}>

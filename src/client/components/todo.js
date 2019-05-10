@@ -43,7 +43,7 @@ const Todo = ({ filtered, onClickDelete, onClickTodo, onClickArchive, status, te
    * Base CSS class
    */
   const todoCls = filtered ? 'todo' : 'todo hidden';
-  const completeCls = status === 'complete' ? '--status-complete' : '';
+  const completeCls = status === 'complete' ? ' --status-complete' : '';
 
   return (
     <li className={todoCls + completeCls}>
@@ -51,7 +51,9 @@ const Todo = ({ filtered, onClickDelete, onClickTodo, onClickArchive, status, te
       <TodoLink text={text} onClick={onClickTodo} />
       <Button text='Archive' onClick={onClickArchive} status={status} archive={archive} />
 
-      <Button text="Delete" onClick={onClickDelete} />
+      <Button text="X"
+
+onClick={onClickDelete} />
     </li>
   );
 }

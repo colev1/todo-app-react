@@ -11,8 +11,7 @@ const noop = () => { };
  * @private
  */
 const propTypes = {
-  filterBy: PropTypes.string,
-  onClickFilter: PropTypes.func,
+  archiveAllCompleted: PropTypes.func,
 };
 
 /**
@@ -20,15 +19,14 @@ const propTypes = {
  * @private
  */
 const defaultProps = {
-  filterBy: '',
-  onClickFilter: noop,
+  archiveAllCompleted: noop,
 };
 
 /**
  * Navbar component
  * @returns {ReactElement}
  */
-const Navbar = () => {
+const Navbar = ({archiveAllCompleted, todos}) => {
   /**
    * Base CSS class
    */
@@ -57,7 +55,7 @@ const Navbar = () => {
           Archived
         </NavLink>
       </div>
-        <Button text= "Archive all completed" className="archive-button"/>
+        <Button text= "Archive all completed" className="archive-button" onClick={archiveAllCompleted.bind(this, todos)}/>
     </div>
   );
 }

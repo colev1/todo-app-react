@@ -46,11 +46,11 @@ class TodosPage extends React.Component {
 
     this.addTodo = this.addTodo.bind(this);
     this.postTodo = this.postTodo.bind(this);
-    // this.setFilterBy = this.setFilterBy.bind(this);
     this.updateTodos = this.updateTodos.bind(this);
     this.completeAll = this.completeAll.bind(this);
     this.countCompletedTodos = this.countCompletedTodos.bind(this)
     this.putTodo = this.putTodo.bind(this)
+    this.archiveAllCompleted = this.archiveAllCompleted.bind(this)
   }
 
   /**
@@ -79,20 +79,10 @@ class TodosPage extends React.Component {
    * @param  {object} json - Resulting JSON from fetch
    */
   postTodo(json) {
-    console.log(json)
     this.setState({
       todos: [...json],
     });
     this.countCompletedTodos()
-  }
-
-  /**
-   * Set filterBy state
-   *
-   * @param {string} filterBy - filterBy state
-   */
-  setFilterBy(filterBy) {
-    this.setState({ filterBy });
   }
 
   /**
@@ -101,7 +91,6 @@ class TodosPage extends React.Component {
    * @param  {Array} todos - Array of todo objects
    */
   updateTodos(todos) {
-    console.log(todos)
     this.setState({ todos });
     this.countCompletedTodos()
   }
@@ -145,6 +134,24 @@ class TodosPage extends React.Component {
     this.setState({ remaining })
   }
 
+  archiveAllCompleted(todos) {
+
+    todos.forEach(todo => {
+      if(todo.status === "complete") {
+        const newTodo = Object.assign({}, todo);
+        todo.archive = true;
+        newTodo.archive = true;
+        api('PUT', newTodo, this.putTodo);
+      } else {
+        return todo;
+      }
+    })
+
+    this.setState({ todos })
+
+    this.countCompletedTodos();
+  }
+
   /**
    * Render
    * @returns {ReactElement}
@@ -153,7 +160,11 @@ class TodosPage extends React.Component {
     // console.log(this.props.location)
     return (
       <div className={this.baseCls}>
-        <Navbar filterBy={this.state.filterBy} onClickFilter={this.setFilterBy} />
+        <Navbar
+          archiveAllCompleted={this.archiveAllCompleted}
+          todos={this.state.todos}
+
+        />
 
         <SummaryBar
           completeAll={this.completeAll}
