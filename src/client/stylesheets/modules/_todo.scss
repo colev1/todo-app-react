@@ -1,32 +1,44 @@
 // Todo module.
 .todo {
   cursor: pointer;
+  font-size: 20px;
 
-  &--status-complete {
+  &.--status-complete {
     .todo-link {
       text-decoration: line-through;
+      color: $lightgray;
     }
   }
 
-  &hidden {
-    display: none;
+  .inactive {
+    opacity: 0;
+    &:hover {
+      cursor: none;
+    }
   }
+}
 
-  .hidden {
+.hidden {
     display: none;
-    // opacity: 0;
-  }
+}
 
-  input {
-    // position: absolute;
-    // left: 0;
+.checkbox {
+  &:before {
+    color: red;
+  border: dotted .4px black; 
   }
+  height: 20px;
+  width: 20px;
+  padding: 4px;
+  margin: 0;
+  border: dotted 1px black;
+  color: $green;
+  font-size: 20px;
 }
 
 
 .hidden {
   display: none;
-  // opacity: 0;
 }
 
 .archive-btn {
@@ -43,4 +55,8 @@
   font-size: 32px;
   font-family: $buttonfont;
   color: $gray;
+  &:hover {
+    color: $darkgray;
+    cursor: pointer;
+  }
 }

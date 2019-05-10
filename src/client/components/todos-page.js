@@ -135,9 +135,8 @@ class TodosPage extends React.Component {
   }
 
   archiveAllCompleted(todos) {
-
     todos.forEach(todo => {
-      if(todo.status === "complete") {
+      if (todo.status === "complete") {
         const newTodo = Object.assign({}, todo);
         todo.archive = true;
         newTodo.archive = true;
@@ -148,7 +147,6 @@ class TodosPage extends React.Component {
     })
 
     this.setState({ todos })
-
     this.countCompletedTodos();
   }
 
@@ -163,7 +161,6 @@ class TodosPage extends React.Component {
         <Navbar
           archiveAllCompleted={this.archiveAllCompleted}
           todos={this.state.todos}
-
         />
 
         <SummaryBar

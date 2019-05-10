@@ -32,7 +32,7 @@ const SummaryBar = ({ completeAll, todos, remaining }) => {
   return (
     <div className="summary-bar">
       <p className="message"> {message} </p>
-      <Button text="Complete All" onClick={completeAll.bind(this, todos)} />
+      <Button text="Complete All" onClick={completeAll.bind(this, todos)} remaining={remaining} />
     </div>
   )
 }
