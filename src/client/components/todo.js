@@ -17,6 +17,7 @@ const propTypes = {
   onClickArchive: PropTypes.func,
   status: PropTypes.string,
   text: PropTypes.string,
+  archive: PropTypes.bool
 };
 
 /**
@@ -30,36 +31,37 @@ const defaultProps = {
   onClickArchive: noop,
   status: '',
   text: '',
+  archive: false
 };
 
 /**
  * Todo component
  * @returns {ReactElement}
  */
-const Todo = ({ filtered, onClickDelete, onClickTodo, onClickArchive, status, text }) => {
+const Todo = ({ filtered, onClickDelete, onClickTodo, onClickArchive, status, text, archive }) => {
   /**
    * Base CSS class
    */
   const todoCls = filtered ? 'todo' : 'todo hidden';
   + (status === 'complete' ? ' todo--status-complete' : '')
 
-  if(status === '') {
+  // if(status === '') {
     return (
       <li className={todoCls}>
         <TodoLink text={text} onClick={onClickTodo} />
-        <Button text='Archive' onClick={onClickArchive} status={todo.status}/>
+        <Button text='Archive' onClick={onClickArchive} status={status} archive={archive}/>
 
         <Button text="Delete" onClick={onClickDelete} />
       </li>
     );
-  } else {
-    return (
-      <li className={todoCls}>
-        <TodoLink text={text} onClick={onClickTodo} />
-        <Button text="Delete" onClick={onClickDelete} />
-      </li>
-    );
-  }
+  // } else {
+    // return (
+    //   <li className={todoCls}>
+    //     <TodoLink text={text} onClick={onClickTodo} />
+    //     <Button text="Delete" onClick={onClickDelete} />
+    //   </li>
+    // );
+  // }
 }
 
 Todo.propTypes = propTypes;

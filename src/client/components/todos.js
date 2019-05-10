@@ -121,17 +121,23 @@ const Todos = ({ filterBy, todos, updateTodos, countCompletedTodos }) => {
     return todos.map(todo => {
       let filtered;
       switch (filterBy) {
+        case '/':
+          filtered = !todo.archive 
+          break;
         case '/active':
-          filtered = todo.status === 'active';
+          if(todo.status === 'active' && !todo.archive) {
+            filtered = true;
+          }
+          // filtered = todo.status === 'active' ;
           break;
         case '/complete':
           filtered = todo.status === 'complete' && todo.archive !== true;
           break;
-        case '/archived':
+        case '/archive':
           filtered = todo.archive;
           break;
         default:
-          filtered = true;
+          filtered = false;
       }
 
       return (
@@ -142,6 +148,7 @@ const Todos = ({ filterBy, todos, updateTodos, countCompletedTodos }) => {
           onClickTodo={onClickTodo.bind(this, todo)}
           onClickArchive={onClickArchive.bind(this, todo)}
           status={todo.status}
+          archive={todo.archive || false}
           text={todo.text}
         />
       );
