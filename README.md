@@ -1,7 +1,7 @@
 # MyTodos
 
 ## Description
-MyTodos is an application that allows users to create new tasks, toggle them as complete or active, delete tasks, and archive some tasks.  Users have the ability to filter their current todos based on the status (complete, active, archived), or view all tasks on one page.
+MyTodos is an application that allows users to create new tasks, toggle them as complete or active, delete tasks, and archive some tasks.  Users have the ability to filter their current todos based on the status (complete, active, archived), or view all tasks on one page.  Future iterations of this application are displayed as issues in the GitHub repo.
 
 ## Tech Stack
 * React
@@ -23,6 +23,5 @@ Next, install project dependencies and start the backend and watch process all a
 
 `npm install`  
 `npm start`
-
 
 
