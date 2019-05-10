@@ -43,10 +43,10 @@ const Todo = ({ filtered, onClickDelete, onClickTodo, onClickArchive, status, te
    * Base CSS class
    */
   const todoCls = filtered ? 'todo' : 'todo hidden';
-  + (status === 'complete' ? ' todo--status-complete' : '')
+  const completeCls = status === 'complete' ? '--status-complete' : 'jj';
 
   return (
-    <li className={todoCls}>
+    <li className={todoCls + completeCls}>
       <TodoLink text={text} onClick={onClickTodo} />
       <Button text='Archive' onClick={onClickArchive} status={status} archive={archive} />
 

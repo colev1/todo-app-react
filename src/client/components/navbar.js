@@ -34,7 +34,7 @@ const Navbar = () => {
    */
 
   return (
-    <div>
+    <div className="navcontainer">
       <div className = "navbar"> 
         <NavLink
           exact to="/"       
@@ -57,7 +57,7 @@ const Navbar = () => {
           Archived
         </NavLink>
       </div>
-      <Button text= "Archive all completed" />
+        <Button text= "Archive all completed" className="archive-button"/>
     </div>
   );
 }

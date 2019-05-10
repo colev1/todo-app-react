@@ -3,7 +3,9 @@
   cursor: pointer;
 
   &--status-complete {
-    text-decoration: line-through;
+    .todo-link {
+      text-decoration: line-through;
+    }
   }
 
   &.hidden {

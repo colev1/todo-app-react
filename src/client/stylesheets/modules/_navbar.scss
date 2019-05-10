@@ -6,7 +6,6 @@
   justify-content: flex-start;
   align-items: center;
   padding: 20px;
-  
 
   a {
     margin: 10px; 
@@ -19,7 +18,13 @@
         color: $darkgray;
       }
   }
+}
 
+.navcontainer {
+  display: flex;
+  justify-content: space-between;
+  background-color: $lightgray;
+  align-items: center;
   button {
     background-color: $green;
     border-radius: 4px;
@@ -27,5 +32,7 @@
     font-weight: 700;
     right: 0;
     padding: 8px;
+    position: absolute;
+    right: 0;
   }
 }
