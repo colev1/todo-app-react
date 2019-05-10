@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 let todos = [
-  { id: 1, text: 'Hello, world!' },
+  { id: 1, text: 'Hello, world!', status: 'active' },
   { id: 2, text: 'Pick up groceries', status: 'complete' }
 ];
 
@@ -81,10 +81,10 @@ app.put('/todos/:id', (req, res) => {
       return todo
     }
   })
-  if(updatedTodo) {
+  if (updatedTodo) {
     return res.status(200).json(updatedTodo)
   } else {
-    
+
   }
 });
 

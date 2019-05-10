@@ -4,7 +4,7 @@ import React from 'react';
 import Button from './button';
 import TodoLink from './todo-link';
 
-const noop = () => {};
+const noop = () => { };
 
 /**
  * Prop Types
@@ -14,8 +14,10 @@ const propTypes = {
   filtered: PropTypes.bool,
   onClickDelete: PropTypes.func,
   onClickTodo: PropTypes.func,
+  onClickArchive: PropTypes.func,
   status: PropTypes.string,
   text: PropTypes.string,
+  archive: PropTypes.bool
 };
 
 /**
@@ -26,27 +28,27 @@ const defaultProps = {
   filtered: false,
   onClickDelete: noop,
   onClickTodo: noop,
+  onClickArchive: noop,
   status: '',
   text: '',
+  archive: false
 };
 
 /**
  * Todo component
  * @returns {ReactElement}
  */
-const Todo = ({ filtered, onClickDelete, onClickTodo, status, text }) => {
+const Todo = ({ filtered, onClickDelete, onClickTodo, onClickArchive, status, text, archive }) => {
   /**
    * Base CSS class
    */
-  const baseCls = 'todo';
-
-  const todoCls = baseCls
-    + (status === 'complete' ? ' todo--status-complete' : '')
-    + (filtered ? ' todo--filtered' : '');
+  const todoCls = filtered ? 'todo' : 'todo hidden';
+  + (status === 'complete' ? ' todo--status-complete' : '')
 
   return (
     <li className={todoCls}>
       <TodoLink text={text} onClick={onClickTodo} />
+      <Button text='Archive' onClick={onClickArchive} status={status} archive={archive} />
 
       <Button text="Delete" onClick={onClickDelete} />
     </li>

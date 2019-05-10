@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const noop = () => {};
+const noop = () => { };
 
 /**
  * Prop Types
@@ -10,6 +10,8 @@ const noop = () => {};
 const propTypes = {
   onClick: PropTypes.func,
   text: PropTypes.string,
+  archive: PropTypes.bool,
+  status: PropTypes.string
 };
 
 /**
@@ -19,20 +21,30 @@ const propTypes = {
 const defaultProps = {
   onClick: noop,
   text: '',
+  archive: null,
+  status: ''
 };
 
 /**
  * Button component
  * @returns {ReactElement}
  */
-const Button = ({ text, onClick }) => {
+const Button = ({ text, onClick, archive, status }) => {
   /**
    * Base CSS class
    */
-  const baseCls = 'button';
+
+  let buttonClass = 'button';
+  if (text === 'Archive') {
+    if (archive || status === "active") {
+      buttonClass = 'display-none';
+    } else {
+      buttonClass = 'archive-btn';
+    }
+  }
 
   return (
-    <button className={baseCls} onClick={onClick}>
+    <button className={buttonClass} onClick={onClick}>
       {text}
     </button>
   )

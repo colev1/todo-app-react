@@ -6,7 +6,16 @@
     text-decoration: line-through;
   }
 
-  &--filtered {
+  &.hidden {
     display: none;
   }
+}
+
+.archive-btn {
+  background-color: $green;
+  border-radius: 4px;
+  color: white;
+  font-weight: 700;
+  right: 0;
+  padding: 8px;
 }

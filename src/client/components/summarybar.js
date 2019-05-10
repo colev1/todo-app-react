@@ -18,7 +18,7 @@ const defaultProps = {
 
 const SummaryBar = ({ completeAll, todos, remaining }) => {
   let message;
-  switch(remaining) {
+  switch (remaining) {
     case 0:
       message = 'You dont have any tasks remaining'
       break;

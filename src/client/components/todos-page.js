@@ -40,13 +40,13 @@ class TodosPage extends React.Component {
 
     this.state = {
       todos: [],
-      filterBy: null,
+      filterBy: '',
       remaining: 0
     };
 
     this.addTodo = this.addTodo.bind(this);
     this.postTodo = this.postTodo.bind(this);
-    this.setFilterBy = this.setFilterBy.bind(this);
+    // this.setFilterBy = this.setFilterBy.bind(this);
     this.updateTodos = this.updateTodos.bind(this);
     this.completeAll = this.completeAll.bind(this);
     this.countCompletedTodos = this.countCompletedTodos.bind(this)
@@ -79,6 +79,7 @@ class TodosPage extends React.Component {
    * @param  {object} json - Resulting JSON from fetch
    */
   postTodo(json) {
+    console.log(json)
     this.setState({
       todos: [...json],
     });
@@ -100,6 +101,7 @@ class TodosPage extends React.Component {
    * @param  {Array} todos - Array of todo objects
    */
   updateTodos(todos) {
+    console.log(todos)
     this.setState({ todos });
     this.countCompletedTodos()
   }
@@ -113,13 +115,13 @@ class TodosPage extends React.Component {
       api('PUT', newTodo, this.putTodo);
     }))
     this.setState({ todos })
-    
+
     this.countCompletedTodos();
 
   }
 
   putTodo = json => {
-    const {todos} = this.state;
+    const { todos } = this.state;
     const index = todos.findIndex(todo => {
       return todo.id === json.id;
     });
@@ -148,7 +150,7 @@ class TodosPage extends React.Component {
    * @returns {ReactElement}
    */
   render() {
-
+    // console.log(this.props.location)
     return (
       <div className={this.baseCls}>
         <Navbar filterBy={this.state.filterBy} onClickFilter={this.setFilterBy} />
@@ -162,7 +164,7 @@ class TodosPage extends React.Component {
         <TodoForm onSubmit={this.addTodo} />
 
         <Todos
-          filterBy={this.state.filterBy}
+          filterBy={this.props.location.pathname}
           todos={this.state.todos}
           updateTodos={this.updateTodos}
           countCompletedTodos={this.countCompletedTodos}

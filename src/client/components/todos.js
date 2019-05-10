@@ -64,6 +64,8 @@ const Todos = ({ filterBy, todos, updateTodos, countCompletedTodos }) => {
       return todo.id === json.id;
     });
 
+    console.log(json)
+
     updateTodos(
       [
         ...todos.slice(0, index),
@@ -71,6 +73,7 @@ const Todos = ({ filterBy, todos, updateTodos, countCompletedTodos }) => {
         ...todos.slice(index + 1),
       ]
     );
+
   }
 
   /**
@@ -97,6 +100,14 @@ const Todos = ({ filterBy, todos, updateTodos, countCompletedTodos }) => {
     api('PUT', newTodo, putTodo);
   }
 
+  const onClickArchive = todo => {
+    const newTodo = Object.assign({}, todo);
+    newTodo.archive = true;
+    console.log(newTodo)
+
+    api('PUT', newTodo, putTodo);
+  }
+
   /**
    * Renders All Todos
    *
@@ -110,15 +121,21 @@ const Todos = ({ filterBy, todos, updateTodos, countCompletedTodos }) => {
     return todos.map(todo => {
       let filtered;
       switch (filterBy) {
-        case 'active':
-          filtered = todo.status === 'complete';
+        case '/':
+          filtered = !todo.archive
           break;
-        case 'completed':
-          filtered = todo.status !== 'complete';
+        case '/active':
+          if (todo.status === 'active' && !todo.archive) {
+            filtered = true;
+          }
+          // filtered = todo.status === 'active' ;
           break;
-        // case 'archived':
-        //   filtered = todo.status === 'archived';
-        //   break;
+        case '/complete':
+          filtered = todo.status === 'complete' && todo.archive !== true;
+          break;
+        case '/archive':
+          filtered = todo.archive;
+          break;
         default:
           filtered = false;
       }
@@ -129,7 +146,9 @@ const Todos = ({ filterBy, todos, updateTodos, countCompletedTodos }) => {
           filtered={filtered}
           onClickDelete={onClickDelete.bind(this, todo)}
           onClickTodo={onClickTodo.bind(this, todo)}
+          onClickArchive={onClickArchive.bind(this, todo)}
           status={todo.status}
+          archive={todo.archive || false}
           text={todo.text}
         />
       );
