@@ -3,19 +3,21 @@
   background-color: $lightgray;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   padding: 20px;
-  &__item {
-    margin: 10px;
+  
+
+  a {
+    margin: 10px; 
     text-decoration: none;
     color: $gray;
-  }
-
-  &__item--active {
-    margin: 10px;
-    font-weight: 700;
-    color: $darkgray;
+    
+      &.active {
+        margin: 10px;
+        font-weight: 700;
+        color: $darkgray;
+      }
   }
 
   button {
