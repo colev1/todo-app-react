@@ -115,13 +115,13 @@ class TodosPage extends React.Component {
       api('PUT', newTodo, this.putTodo);
     }))
     this.setState({ todos })
-    
+
     this.countCompletedTodos();
 
   }
 
   putTodo = json => {
-    const {todos} = this.state;
+    const { todos } = this.state;
     const index = todos.findIndex(todo => {
       return todo.id === json.id;
     });

@@ -4,7 +4,7 @@ import React from 'react';
 import Button from './button';
 import TodoLink from './todo-link';
 
-const noop = () => {};
+const noop = () => { };
 
 /**
  * Prop Types
@@ -45,23 +45,14 @@ const Todo = ({ filtered, onClickDelete, onClickTodo, onClickArchive, status, te
   const todoCls = filtered ? 'todo' : 'todo hidden';
   + (status === 'complete' ? ' todo--status-complete' : '')
 
-  // if(status === '') {
-    return (
-      <li className={todoCls}>
-        <TodoLink text={text} onClick={onClickTodo} />
-        <Button text='Archive' onClick={onClickArchive} status={status} archive={archive}/>
+  return (
+    <li className={todoCls}>
+      <TodoLink text={text} onClick={onClickTodo} />
+      <Button text='Archive' onClick={onClickArchive} status={status} archive={archive} />
 
-        <Button text="Delete" onClick={onClickDelete} />
-      </li>
-    );
-  // } else {
-    // return (
-    //   <li className={todoCls}>
-    //     <TodoLink text={text} onClick={onClickTodo} />
-    //     <Button text="Delete" onClick={onClickDelete} />
-    //   </li>
-    // );
-  // }
+      <Button text="Delete" onClick={onClickDelete} />
+    </li>
+  );
 }
 
 Todo.propTypes = propTypes;

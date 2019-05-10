@@ -31,7 +31,7 @@ const App = ({ children }) => {
       <div className={baseCls}>
         <Header />
         <Switch>
-          <Route exact path="/" component={TodosPage}/>
+          <Route exact path="/" component={TodosPage} />
           <Route path="/active" component={TodosPage} />
           <Route path="/complete" component={TodosPage} />
           <Route path="/archive" component={TodosPage} />

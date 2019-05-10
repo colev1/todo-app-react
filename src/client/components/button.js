@@ -37,9 +37,9 @@ const Button = ({ text, onClick, archive, status }) => {
   let buttonClass = 'button';
   if (text === 'Archive') {
     if (archive || status === "active") {
-      buttonClass = 'display-none'
+      buttonClass = 'display-none';
     } else {
-      buttonClass = 'archive-btn'
+      buttonClass = 'archive-btn';
     }
   }
 

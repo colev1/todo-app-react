@@ -122,10 +122,10 @@ const Todos = ({ filterBy, todos, updateTodos, countCompletedTodos }) => {
       let filtered;
       switch (filterBy) {
         case '/':
-          filtered = !todo.archive 
+          filtered = !todo.archive
           break;
         case '/active':
-          if(todo.status === 'active' && !todo.archive) {
+          if (todo.status === 'active' && !todo.archive) {
             filtered = true;
           }
           // filtered = todo.status === 'active' ;

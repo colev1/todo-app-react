@@ -4,7 +4,7 @@ import React from 'react';
 
 import Button from './button';
 
-const noop = () => {};
+const noop = () => { };
 
 /**
  * Prop Types
@@ -48,35 +48,35 @@ const Navbar = ({ filterBy, onClickFilter }) => {
       <div>
         <NavLink
           to="/"
-          // activeClassName={`${baseCls}__item--active`}
-          // className={`${baseCls}__item`}
-          // onClick={() => onClickFilter('')}
+        // activeClassName={`${baseCls}__item--active`}
+        // className={`${baseCls}__item`}
+        // onClick={() => onClickFilter('')}
         >
           All
         </NavLink>
         <NavLink
           to="/active"
-          // className={activeLinkCls}
-          // onClick={() => onClickFilter('active')}
+        // className={activeLinkCls}
+        // onClick={() => onClickFilter('active')}
         >
           Active
         </NavLink>
         <NavLink
           to="/complete"
-          // className={completedLinkCls}
-          // onClick={() => onClickFilter('completed')}
+        // className={completedLinkCls}
+        // onClick={() => onClickFilter('completed')}
         >
           Completed
         </NavLink>
         <NavLink
           to="/archive"
-          // className={archivedLinkCls}
-          // onClick={() => onClickFilter('archived')}
+        // className={archivedLinkCls}
+        // onClick={() => onClickFilter('archived')}
         >
           Archived
         </NavLink>
       </div>
-      <Button text="Archive all completed"/>
+      <Button text="Archive all completed" />
     </div>
   );
 }

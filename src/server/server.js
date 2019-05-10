@@ -81,10 +81,10 @@ app.put('/todos/:id', (req, res) => {
       return todo
     }
   })
-  if(updatedTodo) {
+  if (updatedTodo) {
     return res.status(200).json(updatedTodo)
   } else {
-    
+
   }
 });
 
