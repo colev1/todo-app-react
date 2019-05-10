@@ -117,6 +117,7 @@ const Todos = ({ filterBy, todos, updateTodos, countCompletedTodos }) => {
       return null;
     }
 
+    //Change CSS class of todo based on which route is currently displayed
     return todos.map(todo => {
       let filtered;
       switch (filterBy) {

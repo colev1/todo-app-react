@@ -20,6 +20,7 @@ const defaultProps = {
 
 const SummaryBar = ({ completeAll, todos, remaining }) => {
   let message;
+  //Changes message in summary bar based on how many active tasks remain
   switch (remaining) {
     case 0:
       message = 'You dont have any tasks remaining'
