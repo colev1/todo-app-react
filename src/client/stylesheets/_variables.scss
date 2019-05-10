@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+
+
 
 // Colors.
 $blue: #348dfc;
@@ -8,7 +12,9 @@ $gray: #bababa;
 $lightgray: #e7e7e7;
 
 //Fonts.
-$mainfont: 'Roboto', sans-serif;
+$mainfont: 'Noto Sans', sans-serif;
+$buttonfont: 'Nunito', sans-serif;
+
 
 // Application colors.
 $colors: (

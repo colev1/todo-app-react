@@ -14,6 +14,7 @@ const propTypes = {
   filterBy: PropTypes.string,
   todos: PropTypes.arrayOf(PropTypes.object),
   updateTodos: PropTypes.func,
+  countCompletedTodos: PropTypes.func,
 };
 
 /**
@@ -24,6 +25,7 @@ const defaultProps = {
   filterBy: '',
   todos: [],
   updateTodos: noop,
+  countCompletedTodos: noop,
 };
 
 /**
@@ -64,8 +66,6 @@ const Todos = ({ filterBy, todos, updateTodos, countCompletedTodos }) => {
       return todo.id === json.id;
     });
 
-    console.log(json)
-
     updateTodos(
       [
         ...todos.slice(0, index),
@@ -103,7 +103,6 @@ const Todos = ({ filterBy, todos, updateTodos, countCompletedTodos }) => {
   const onClickArchive = todo => {
     const newTodo = Object.assign({}, todo);
     newTodo.archive = true;
-    console.log(newTodo)
 
     api('PUT', newTodo, putTodo);
   }
@@ -128,7 +127,6 @@ const Todos = ({ filterBy, todos, updateTodos, countCompletedTodos }) => {
           if (todo.status === 'active' && !todo.archive) {
             filtered = true;
           }
-          // filtered = todo.status === 'active' ;
           break;
         case '/complete':
           filtered = todo.status === 'complete' && todo.archive !== true;

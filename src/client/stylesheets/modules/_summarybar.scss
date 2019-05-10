@@ -1,7 +1,8 @@
 .summary-bar {
   display: flex;
   margin: 20px;
-  .button {
+  .button,
+  .complete-all {
     color: $blue;
     border: none;
     font-weight: bold;

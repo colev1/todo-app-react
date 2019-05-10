@@ -7,12 +7,14 @@ const noop = () => { };
 
 const propTypes = {
   completeAll: PropTypes.func,
-  todos: PropTypes.array
+  todos: PropTypes.array,
+  remaining: PropTypes.number
 };
 
 const defaultProps = {
   todos: [],
-  completeAll: noop
+  completeAll: noop,
+  remaining: null
 }
 
 
@@ -32,7 +34,7 @@ const SummaryBar = ({ completeAll, todos, remaining }) => {
   return (
     <div className="summary-bar">
       <p className="message"> {message} </p>
-      <Button text="Complete All" onClick={completeAll.bind(this, todos)} />
+      <Button text="Complete All" onClick={completeAll.bind(this, todos)} remaining={remaining} />
     </div>
   )
 }

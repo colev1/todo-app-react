@@ -11,8 +11,8 @@ const noop = () => { };
  * @private
  */
 const propTypes = {
-  filterBy: PropTypes.string,
-  onClickFilter: PropTypes.func,
+  archiveAllCompleted: PropTypes.func,
+  todos: PropTypes.array,
 };
 
 /**
@@ -20,63 +20,44 @@ const propTypes = {
  * @private
  */
 const defaultProps = {
-  filterBy: '',
-  onClickFilter: noop,
+  archiveAllCompleted: noop,
+  todos: [],
 };
 
 /**
  * Navbar component
  * @returns {ReactElement}
  */
-const Navbar = ({ filterBy, onClickFilter }) => {
+const Navbar = ({ archiveAllCompleted, todos }) => {
   /**
    * Base CSS class
    */
-  const baseCls = 'navbar'
-
-  // let activeLinkCls = `${baseCls}__item`;
-  // activeLinkCls += filterBy === 'active' ? ` ${baseCls}__item--active` : '';
-
-  // let completedLinkCls = `${baseCls}__item`;
-  // completedLinkCls += filterBy === 'completed' ? ` ${baseCls}__item--active` : '';
-
-  // let archivedLinkCls = `${baseCls}__item`;
-  // completedLinkCls += filterBy === 'archived' ? ` ${baseCls}__item--active` : '';
 
   return (
-    <div className={baseCls}>
-      <div>
+    <div className="navcontainer">
+      <div className="navbar">
         <NavLink
-          to="/"
-        // activeClassName={`${baseCls}__item--active`}
-        // className={`${baseCls}__item`}
-        // onClick={() => onClickFilter('')}
+          exact to="/"
         >
           All
         </NavLink>
         <NavLink
           to="/active"
-        // className={activeLinkCls}
-        // onClick={() => onClickFilter('active')}
         >
           Active
         </NavLink>
         <NavLink
           to="/complete"
-        // className={completedLinkCls}
-        // onClick={() => onClickFilter('completed')}
         >
           Completed
         </NavLink>
         <NavLink
           to="/archive"
-        // className={archivedLinkCls}
-        // onClick={() => onClickFilter('archived')}
         >
           Archived
         </NavLink>
       </div>
-      <Button text="Archive all completed" />
+      <Button text="Archive all completed" className="archive-button" onClick={archiveAllCompleted.bind(this, todos)} />
     </div>
   );
 }

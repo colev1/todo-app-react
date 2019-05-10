@@ -7,8 +7,15 @@ form {
 }
 
 input {
-  font-size: 24px;
-  padding: 4px;
-  margin: 20px;
+  background-image: linear-gradient($lightgray, white);
   border-radius: 8px;
+  border: solid 1px $gray;
+  color: $gray;
+  font-size: 24px;
+  margin: 20px;
+  padding: 8px;
+  width: 40%;
+  &::placeholder {
+    color: $gray;
+  }
 }

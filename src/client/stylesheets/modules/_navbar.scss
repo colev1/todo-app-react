@@ -3,27 +3,35 @@
   background-color: $lightgray;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  padding: 20px;
-  &__item {
+  padding: 12px;
+
+  a {
     margin: 10px;
     text-decoration: none;
     color: $gray;
-  }
 
-  &__item--active {
-    margin: 10px;
-    font-weight: 700;
-    color: $darkgray;
+    &.active {
+      margin: 10px;
+      font-weight: 700;
+      color: $darkgray;
+    }
   }
+}
 
+.navcontainer {
+  align-items: center;
+  background-color: $lightgray;
+  display: flex;
+  justify-content: space-between;
   button {
     background-color: $green;
     border-radius: 4px;
     color: white;
     font-weight: 700;
-    right: 0;
     padding: 8px;
+    position: absolute;
+    right: 8px;
   }
 }

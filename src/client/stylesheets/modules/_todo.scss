@@ -1,14 +1,67 @@
 // Todo module.
 .todo {
   cursor: pointer;
+  font-size: 20px;
 
-  &--status-complete {
-    text-decoration: line-through;
+  &.--status-complete {
+    .todo-link {
+      color: $lightgray;
+      text-decoration: line-through;
+    }
   }
 
-  &.hidden {
-    display: none;
+  .inactive {
+    opacity: 0;
+    &:hover {
+      cursor: none;
+    }
   }
+}
+
+.hidden {
+  display: none;
+}
+
+.checkbox-container {
+  cursor: pointer;
+  margin-bottom: 16px;
+  position: relative;
+  &:hover {
+    background-color: $gray;
+  }
+  .checkbox {
+    cursor: pointer;
+    opacity: 0;
+    position: absolute;
+    width: 0;    
+  }
+  .checkmark {
+    background-color: $lightgray;
+    height: 28px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 28px;
+    &:after {
+      content: "";
+      position: absolute;
+      display: none;
+      left: 9px;
+      top: 3px;
+      transform: rotate(40deg);
+      width: 8px;
+      height: 14px;
+      border: solid $green;
+      border-width: 0 4px 4px 0;
+    }
+  }
+  input:checked ~ .checkmark:after {
+    display: unset;
+  }  
+}
+
+.hidden {
+  display: none;
 }
 
 .archive-btn {
@@ -16,6 +69,17 @@
   border-radius: 4px;
   color: white;
   font-weight: 700;
-  right: 0;
   padding: 8px;
+  right: 8px;
+}
+
+.x-btn {
+  border: none;
+  color: $gray;
+  font-family: $buttonfont;
+  font-size: 32px;
+  &:hover {
+    color: $darkgray;
+    cursor: pointer;
+  }
 }

@@ -29,18 +29,31 @@ const defaultProps = {
  * Button component
  * @returns {ReactElement}
  */
-const Button = ({ text, onClick, archive, status }) => {
+const Button = ({ text, onClick, archive, status, remaining }) => {
   /**
    * Base CSS class
    */
-
-  let buttonClass = 'button';
-  if (text === 'Archive') {
-    if (archive || status === "active") {
-      buttonClass = 'display-none';
-    } else {
-      buttonClass = 'archive-btn';
-    }
+  let buttonClass;
+  switch (text) {
+    case 'Archive':
+      if (archive || status === 'active') {
+        buttonClass = 'inactive';
+      } else {
+        buttonClass = 'archive-btn';
+      }
+      break;
+    case 'X':
+      buttonClass = 'x-btn'
+      break;
+    case 'Complete All':
+      if (remaining === 0) {
+        buttonClass = 'hidden';
+      } else {
+        buttonClass = 'complete-all'
+      }
+      break;
+    default:
+      buttonClass = 'button';
   }
 
   return (
