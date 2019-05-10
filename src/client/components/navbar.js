@@ -12,6 +12,7 @@ const noop = () => { };
  */
 const propTypes = {
   archiveAllCompleted: PropTypes.func,
+  todos: PropTypes.array,
 };
 
 /**
@@ -20,22 +21,23 @@ const propTypes = {
  */
 const defaultProps = {
   archiveAllCompleted: noop,
+  todos: [],
 };
 
 /**
  * Navbar component
  * @returns {ReactElement}
  */
-const Navbar = ({archiveAllCompleted, todos}) => {
+const Navbar = ({ archiveAllCompleted, todos }) => {
   /**
    * Base CSS class
    */
 
   return (
     <div className="navcontainer">
-      <div className = "navbar"> 
+      <div className="navbar">
         <NavLink
-          exact to="/"       
+          exact to="/"
         >
           All
         </NavLink>
@@ -55,7 +57,7 @@ const Navbar = ({archiveAllCompleted, todos}) => {
           Archived
         </NavLink>
       </div>
-        <Button text= "Archive all completed" className="archive-button" onClick={archiveAllCompleted.bind(this, todos)}/>
+      <Button text="Archive all completed" className="archive-button" onClick={archiveAllCompleted.bind(this, todos)} />
     </div>
   );
 }

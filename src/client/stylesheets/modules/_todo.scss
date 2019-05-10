@@ -5,8 +5,8 @@
 
   &.--status-complete {
     .todo-link {
-      text-decoration: line-through;
       color: $lightgray;
+      text-decoration: line-through;
     }
   }
 
@@ -19,23 +19,48 @@
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
-.checkbox {
-  &:before {
-    color: red;
-  border: dotted .4px black; 
+.checkbox-container {
+  cursor: pointer;
+  margin-bottom: 16px;
+  position: relative;
+  &:hover {
+    background-color: $lightgray;
   }
-  height: 20px;
-  width: 20px;
-  padding: 4px;
-  margin: 0;
-  border: dotted 1px black;
-  color: $green;
-  font-size: 20px;
+  .checkbox {
+    cursor: pointer;
+    opacity: 0;
+    position: absolute;
+    width: 0;
+  }
+  .checkmark {
+    background-color: $lightgray;
+    height: 28px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 28px;
+    &:after {
+      content: "";
+      position: absolute;
+      display: none;
+      left: 9px;
+      top: 3px;
+      width: 8px;
+      height: 14px;
+      border: solid $green;
+      border-width: 0 4px 4px 0;
+      transform: rotate(40deg);
+    }
+  }
 }
 
+/* Show the checkmark when checked */
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
 
 .hidden {
   display: none;
@@ -46,15 +71,15 @@
   border-radius: 4px;
   color: white;
   font-weight: 700;
-  right: 8px;
   padding: 8px;
+  right: 8px;
 }
 
 .x-btn {
   border: none;
-  font-size: 32px;
-  font-family: $buttonfont;
   color: $gray;
+  font-family: $buttonfont;
+  font-size: 32px;
   &:hover {
     color: $darkgray;
     cursor: pointer;

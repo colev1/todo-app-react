@@ -7,12 +7,14 @@ const noop = () => { };
 
 const propTypes = {
   completeAll: PropTypes.func,
-  todos: PropTypes.array
+  todos: PropTypes.array,
+  remaining: PropTypes.number
 };
 
 const defaultProps = {
   todos: [],
-  completeAll: noop
+  completeAll: noop,
+  remaining: null
 }
 
 

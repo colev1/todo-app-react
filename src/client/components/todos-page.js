@@ -155,7 +155,6 @@ class TodosPage extends React.Component {
    * @returns {ReactElement}
    */
   render() {
-    // console.log(this.props.location)
     return (
       <div className={this.baseCls}>
         <Navbar

@@ -8,15 +8,15 @@
   padding: 12px;
 
   a {
-    margin: 10px; 
+    margin: 10px;
     text-decoration: none;
     color: $gray;
-    
-      &.active {
-        margin: 10px;
-        font-weight: 700;
-        color: $darkgray;
-      }
+
+    &.active {
+      margin: 10px;
+      font-weight: 700;
+      color: $darkgray;
+    }
   }
 }
 

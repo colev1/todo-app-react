@@ -47,7 +47,10 @@ const Todo = ({ filtered, onClickDelete, onClickTodo, onClickArchive, status, te
 
   return (
     <li className={todoCls + completeCls}>
-      <input type="checkbox" checked={status === 'complete'} onClick={onClickTodo} className="checkbox" />
+      <div className="checkbox-container">
+        <input type="checkbox" checked={status === 'complete'} onClick={onClickTodo} onChange={onClickTodo} className="checkbox" />
+        <span class="checkmark"></span>
+      </div>
       <TodoLink text={text} onClick={onClickTodo} />
       <Button text='Archive' onClick={onClickArchive} status={status} archive={archive} />
       <Button text="X" onClick={onClickDelete} />
