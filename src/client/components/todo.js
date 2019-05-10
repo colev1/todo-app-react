@@ -43,10 +43,11 @@ const Todo = ({ filtered, onClickDelete, onClickTodo, onClickArchive, status, te
    * Base CSS class
    */
   const todoCls = filtered ? 'todo' : 'todo hidden';
-  const completeCls = status === 'complete' ? '--status-complete' : 'jj';
+  const completeCls = status === 'complete' ? '--status-complete' : '';
 
   return (
     <li className={todoCls + completeCls}>
+      <input type="checkbox" checked={status === 'complete'} />
       <TodoLink text={text} onClick={onClickTodo} />
       <Button text='Archive' onClick={onClickArchive} status={status} archive={archive} />
 

@@ -1,6 +1,8 @@
 // Todo module.
 .todo {
   cursor: pointer;
+  display: flex;
+  justify-content: space-around;
 
   &--status-complete {
     .todo-link {
@@ -10,6 +12,11 @@
 
   &.hidden {
     display: none;
+  }
+
+  input {
+    position: absolute;
+    left: 0;
   }
 }
 
